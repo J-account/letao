@@ -72,7 +72,7 @@
                 url: '/api/user/logout',
                 type: 'get',
                 success: function (info) {
-                    if (info.success) return location.href = '/index.html';
+                    if (info.success) return location.href = '/';
                     alert(info.message);
                 }
             })

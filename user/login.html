@@ -48,6 +48,22 @@
     <script src="../res/mui/js/mui.min.js"></script>
     <script src="../js/jquery.min.js"></script>
     <script>
+        // 登录页面 该页面地址中如果有url参数 则登录后跳转到该url地址 若是没有就默认跳转到首页;
+        // 判断是否有url 
+        var search = location.search.slice(1);  //url=http://www.letao.com/user/address.html
+        // 使用正则匹配url的值
+        var reg = /url=(.+)/;
+        var match = reg.exec(search);
+        // console.log(match); 
+        // 这里如果直接在地址栏输入该页面的地址 则没有search，所以match[1]就是null  故需要判断match是否为null
+        // if (match) {
+        //     var url = match[1];
+        // }else {
+        //     var url ='/';
+        // }
+        var url = match && match[1];
+        url = url || '/';
+
         $('form').on('submit', function () {
             var data = $(this).serialize();
             $.ajax({
@@ -55,7 +71,7 @@
                 type: 'post',
                 data: data,
                 success: function (info) {
-                    if (info.success) return location.href = '/index.html';
+                    if (info.success) return location.href = url;
                     alert(info.message);
                 }
             });
