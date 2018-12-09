@@ -1,153 +1,196 @@
 <!DOCTYPE html>
 <html>
+
 <head lang="en">
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0"/>
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0" />
     <meta content="yes" name="apple-mobile-web-app-capable">
     <meta content="black" name="apple-mobile-web-app-status-bar-style">
     <meta content="telephone=no" name="format-detection">
     <title>传智云购-搜索中心</title>
     <link type="image/x-icon" rel="shortcut icon" href="images/favicon.ico">
-    <link rel="stylesheet" href="res/mui/css/mui.min.css"/>
-    <link rel="stylesheet" href="res/fontAwesome/css/font-awesome.min.css"/>
-    <link rel="stylesheet" href="css/common.css"/>
-    <link rel="stylesheet" href="css/product.css"/>
+    <link rel="stylesheet" href="res/mui/css/mui.min.css" />
+    <link rel="stylesheet" href="res/fontAwesome/css/font-awesome.min.css" />
+    <link rel="stylesheet" href="css/common.css" />
+    <link rel="stylesheet" href="css/product.css" />
+    <style>
+        .active {
+            background-color: lightgreen;
+        }
+    </style>
 </head>
+
 <body>
-<div class="cz_layout">
-    <header class="cz_topBar">
-        <a href="javascript:history.back();" class="icon_back fa fa-arrow-left"></a>
-        <span class="title">商品详情</span>
-        <a href="index.html" class="icon_home fa fa-home"></a>
-    </header>
-    <div class="cz_container ">
-        <div class="mui-scroll-wrapper">
-            <div class="mui-scroll">
-                <div class="cz_banner mui-slider">
-                    <div class="mui-slider-group mui-slider-loop">
-                        <div class="mui-slider-item mui-slider-item-duplicate">
-                            <a href="#"><img src="images/product.jpg"></a>
-                        </div>
-                        <div class="mui-slider-item mui-active">
-                            <a href="#"><img src="images/product.jpg"></a>
-                        </div>
-                        <div class="mui-slider-item mui-active">
-                            <a href="#"><img src="images/product.jpg"></a>
-                        </div>
-                        <div class="mui-slider-item mui-slider-item-duplicate">
-                            <a href="#"><img src="images/product.jpg"></a>
-                        </div>
-                    </div>
-                    <div class="mui-slider-indicator">
-                        <div class="mui-indicator mui-active"></div>
-                        <div class="mui-indicator"></div>
-                    </div>
-                </div>
-                <div class="p_title">
-                    Nike耐克 男式 NIKE AIR MAX 1 PND QS复刻休闲鞋
-                </div>
-                <div class="p_price">
-                    <span class="fold"><span>5.9</span>折</span>
-                    价格：<strong class="present">¥
-                    712.00</strong>
-                    <del class="original">¥1199.0</del>
-                </div>
-                <div class="p_size">
-                    尺码：
-                    <span class="btn_size">38</span>
-                    <span class="btn_size">39</span>
-                    <span class="btn_size">40</span>
-                    <span class="btn_size">41</span>
-                    <span class="btn_size">43</span>
-                    <span class="btn_size">44</span>
-                    <span class="btn_size">45</span>
-                </div>
-                <div class="p_number">
-                    数量：
-                    <span class="jian">-</span><input type="tel"/><span class="jia">+</span>
-                    剩余：0 件
-                </div>
-                <div class="p_detail">
-                    <img data-lazyload="images/detail.jpg"  alt=""/>
-                    <img data-lazyload="images/detail.jpg"  alt=""/>
-                    <img data-lazyload="images/detail.jpg"  alt=""/>
-                    <img data-lazyload="images/detail.jpg"  alt=""/>
-                    <img data-lazyload="images/detail.jpg"  alt=""/>
-                    <img data-lazyload="images/detail.jpg"  alt=""/>
+    <div class="cz_layout">
+        <header class="cz_topBar">
+            <a href="javascript:history.back();" class="icon_back fa fa-arrow-left"></a>
+            <span class="title">商品详情</span>
+            <a href="index.html" class="icon_home fa fa-home"></a>
+        </header>
+        <div class="cz_container ">
+            <div class="mui-scroll-wrapper">
+                <div class="mui-scroll" id="detail">
+
                 </div>
             </div>
         </div>
     </div>
-</div>
-<div class="p_option">
-    <a href="/cart.html" class="btn_cart fa fa-shopping-cart"></a>
-    <a href="#" class="btn_addCart">加入购物车</a>
-    <a href="#" class="btn_pay">立即购买</a>
-</div>
-<script src="res/mui/js/mui.min.js"></script>
-<script src="res/mui/js/mui.lazyload.js"></script>
-<script src="res/mui/js/mui.lazyload.img.js"></script>
-<script src="/js/jquery.min.js"></script>
-<script>
+    <div class="p_option">
+        <a href="/cart.html" class="btn_cart fa fa-shopping-cart"></a>
+        <a href="#" class="btn_addCart">加入购物车</a>
+        <a href="#" class="btn_pay">立即购买</a>
+    </div>
 
+    <!-- 自定义模板 -->
+    <script type="text/template" id="tpl">
+        <div class="cz_banner mui-slider">
+            <div class="mui-slider-group mui-slider-loop">
+                <div class="mui-slider-item mui-slider-item-duplicate">
+                    <a href="#"><img src="images/product.jpg"></a>
+                </div>
+                <div class="mui-slider-item mui-active">
+                    <a href="#"><img src="images/product.jpg"></a>
+                </div>
+                <div class="mui-slider-item mui-active">
+                    <a href="#"><img src="images/product.jpg"></a>
+                </div>
+                <div class="mui-slider-item mui-slider-item-duplicate">
+                    <a href="#"><img src="images/product.jpg"></a>
+                </div>
+            </div>
+            <div class="mui-slider-indicator">
+                <div class="mui-indicator mui-active"></div>
+                <div class="mui-indicator"></div>
+            </div>
+        </div>
+        <div class="p_title">{{proName}}</div>
+        <div class="p_price">
+            <span class="fold"><span>{{discount}}</span>折</span>
+            价格：<strong class="present">¥
+            {{price}}</strong>
+            <del class="original">¥{{oldPrice}}</del>
+        </div>
+        <div class="p_size">
+            尺码：
+            {{each size val}}
+            <span class="btn_size">{{val}}</span>
+            {{/each}}
+        </div>
+        <div class="p_number">
+            数量：
+            <span class="jian btn_act">-</span>
+            <input type="tel" class="btn_num" value="1" />
+            <span class="jia btn_act">+</span>
+            剩余：{{num}}件
+        </div>
+        <div class="p_detail">
+            <img data-lazyload="images/detail.jpg"  alt=""/>
+            <img data-lazyload="images/detail.jpg"  alt=""/>
+            <img data-lazyload="images/detail.jpg"  alt=""/>
+            <img data-lazyload="images/detail.jpg"  alt=""/>
+            <img data-lazyload="images/detail.jpg"  alt=""/>
+            <img data-lazyload="images/detail.jpg"  alt=""/>
+        </div>
+    </script>
 
-    // 完成添加购物车
-    $('.btn_addCart').on('click', function () {
+    <script src="res/mui/js/mui.min.js"></script>
+    <script src="res/mui/js/mui.lazyload.js"></script>
+    <script src="res/mui/js/mui.lazyload.img.js"></script>
+    <script src="/js/jquery.min.js"></script>
+    <script src="/js/template-web.js"></script>
+    <script>
+
+        // 完成商品详情
+        // 步骤：获取产品id  发送ajax请求 接收响应结果 处理数据
+        var search = location.search.slice(1);
+        search = search.split('&');   //得到数组 如["id=2","a=b","name=4"]
+
+        var qs = {};
+        // 循环遍历数组的每一项 
+        for (var i = 0; i < search.length; i++) {
+            // 将数组中的每一项 
+            var tmp = search[i].split('=');   //得到数组["id", "2"]
+            // console.log(tmp);  //tmp[0] = 'id'  tmp[1] = 2
+            qs[tmp[0]] = tmp[1];
+            // console.log(qs);  // 得到 {id: "2"}
+        };
+
         $.ajax({
-            url: '/api/cart/addCart',
-            type: 'post',
-            data: {
-                productId: '1',
-                num: 2,
-                size: 38
-            },
+            url: '/api/product/queryProductDetail',
+            data: { id: qs.id },
+            type: 'get',
             success: function (info) {
-                if (info.error) {
-                    mui.alert(
-                        '请先登录',
-                        '',
-                        '',
-                        function () {
-                            location.href = '/user/login.html?' + location.href;
-                        }
-                    );
-                    return;
-                }
-                mui.toast('添加成功');
+                console.log(info);
+                // 需要对接收到的数据进行处理 有尺码，打折
+                info.size = info.size.split('-');   //得到的是数组
+                // 一个小数.toFixed(val) 当val不写 默认保留0位小数 val=1表示保留一位小数 
+                info.discount = (info.price / info.oldPrice * 10).toFixed(1);
+                var html = template('tpl', info);
+                $('#detail').html(html);
             }
         })
-    });
 
-    mui(function(){
-        mui('.mui-slider').slider({
-            interval:3000 //自动轮播周期，若为0则不自动播放，默认为0；
-        });
-        mui('.mui-scroll-wrapper').scroll({
-            scrollY: true, //是否竖向滚动
-            scrollX: false, //是否横向滚动
-            startX: 0, //初始化时滚动至x
-            startY: 0, //初始化时滚动至y
-            indicators: false, //是否显示滚动条
-            deceleration:0.0006, //阻尼系数,系数越小滑动越灵敏
-            bounce: true, //是否启用回弹
-        });
-        mui.init({
-            pullRefresh: {
-                container: '.mui-scroll-wrapper',
-                down: {
-                    callback: function(){
-                        setTimeout(function(){
-                            mui('.mui-scroll-wrapper').pullRefresh().endPulldownToRefresh(); //refresh completed
-                        },1000);
+
+        // 完成添加购物车
+        $('.btn_addCart').on('click', function () {
+            var num = $('.btn_num').val();
+            var size = $('span.active').text();
+            $.ajax({
+                url: '/api/cart/addCart',
+                type: 'post',
+                data: {
+                    productId: qs.id,
+                    num: num,
+                    size: size
+                },
+                success: function (info) {
+                    if (info.error) {
+                        mui.alert(
+                            '请先登录',
+                            '',
+                            '',
+                            function () {
+                                location.href = '/user/login.html?' + location.href;
+                            }
+                        );
+                        return;
                     }
+                    mui.toast('添加成功');
                 }
+            })
+        });
+
+        // 获取尺码 注册点击事件 用事件委托
+        $('#detail').on('click', '.btn_size', function () {
+            // 当前span添加类名active 其所有兄弟节点移除类名active
+            $(this).addClass('active').siblings().removeClass('active');
+        });
+
+        // 修改商品数量
+        $('#detail').on('click', '.btn_act', function () {
+            // 获取input中的数量
+            var input = $(this).siblings('input');
+            var n = input.val();
+            // 加
+            if ($(this).is('.jia')) {
+                return input.val(++n);
             }
+            // 减
+            if (n <= 1) return;
+            input.val(--n);
         });
-        mui('.p_detail').imageLazyload({
-            placeholder: '../images/user.jpg'
+
+        mui(function () {
+            // 轮番图
+            mui('.mui-slider').slider({
+                interval: 3000 //自动轮播周期，若为0则不自动播放，默认为0；
+            });
+            // 区域滚动
+            mui('.mui-scroll-wrapper').scroll();
+
         });
-    });
-</script>
+    </script>
 
 </body>
+
 </html>

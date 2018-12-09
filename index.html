@@ -191,17 +191,17 @@
     </div>
     <script type="text/template" id="tpl">
         {{each data val}}
-        <a href="#" class="cz_product">
-                <div class="box">
-                    <img src="/api{{val.pic[0].picAddr}}" alt="" />
-                    <p class="name">{{val.proName}}</p>
-                    <p>
-                        <span class="price">&yen;{{val.price}}</span>
-                        <span class="oldPrice">&yen;{{val.oldPrice}}</span></p>
-                    <button class="button">立即购买</button>
-                </div>
-            </a>
-            {{/each}}
+        <a href="/product.html?id={{val.id}}" class="cz_product">
+            <div class="box">
+                <img src="/api{{val.pic[0].picAddr}}" alt="" />
+                <p class="name">{{val.proName}}</p>
+                <p>
+                    <span class="price">&yen;{{val.price}}</span>
+                    <span class="oldPrice">&yen;{{val.oldPrice}}</span></p>
+                <button class="button">立即购买</button>
+            </div>
+        </a>
+        {{/each}}
     </script>
     <script src="res/mui/js/mui.min.js"></script>
     <script src="/js/jquery.min.js"></script>
