@@ -127,15 +127,7 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <tr>
-                                <td>1</td>
-                                <td>某某某</td>
-                                <td>否</td>
-                                <td>15901256171</td>
-                                <td>
-                                    <a href="javascript:;" class="btn btn-warning btn-xs">禁 用</a>
-                                </td>
-                            </tr>
+                            
                         </tbody>
                     </table>
                 </div>
@@ -143,9 +135,78 @@
         </div>
     </div>
 
+    <script type="text/template" id="tpl">
+        {{each rows val key}}
+        <tr>
+            <td>{{key+1}}</td>
+            <td>{{val.username}}</td>
+            <td>{{val.mobile}}1</td>
+            {{if(val.isDelete == 0)}}
+            <td>是</td>
+            {{else}}
+            <td>否</td>
+            {{/if}}
+            <td data-id="{{val.id}}" data-status={{val.isDelete}}>
+                {{if(val.isDelete == 0)}}
+                <a href="javascript:;" class="btn btn-info btn-xs">启 用</a>
+                {{else}}
+                <a href="javascript:;" class="btn btn-warning btn-xs">禁 用</a>
+                {{/if}}
+            </td>
+        </tr>
+        {{/each}}
+    </script>
     <script src="./assets/jquery/jquery.min.js"></script>
     <script src="./assets/bootstrap/js/bootstrap.min.js"></script>
     <script src="./assets/nprogress/nprogress.js"></script>
     <script src="./js/common.js"></script>
+    <script src="./assets/art-template/template-web.js"></script>
+    <script>
+        // 用户列表
+        $.ajax({
+            url: '/api/user/queryUser',
+            type: 'get',
+            data: {
+                page: 1,
+                pageSize: 4
+            },
+            success: function (info) {
+                console.log(info);
+                // 调用模板
+                var html = template('tpl', info);
+                $('tbody').html(html);
+            }
+        });
+
+        // 修改用户状态
+        $('tbody').on('click', 'a.btn-xs', function () {
+            var td = $(this).parent();
+            var id = td.attr('data-id');
+            var status = td.attr('data-status');
+            var _this = $(this);
+            // 0 和 1 之间切换
+            status = Math.abs(status - 1)
+            $.ajax({
+                url: '/api/user/updateUser',
+                type: 'post',
+                data: {
+                    id: id,
+                    isDelete: status
+                },
+                success: function (info) {
+                    _this.toggleClass('btn-warning btn-info');
+                    // 保证dom中的status与数据库中isDelete一致
+                    td.attr('data-status', status);
+                    if (status == 0 ) {
+                        _this.text('启 用');
+                        td.prev().text('是');
+                        return;
+                    }
+                    _this.text('禁 用');
+                    td.prev().text('否');
+                }
+            });
+        })
+    </script>
 </body>
 </html>
