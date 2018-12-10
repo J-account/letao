@@ -75,12 +75,12 @@
     </div>
     <!-- 一级分类模板 -->
     <script type="text/template" id="tpl">
-    <ul>
-        {{each rows val}}
-        <li data_id="{{val.id}}">{{val.categoryName}}</li>
-        {{/each}}    
-    </ul>
-</script>
+        <ul>
+            {{each rows val}}
+            <li data_id="{{val.id}}">{{val.categoryName}}</li>
+            {{/each}}    
+        </ul>
+    </script>
     <!-- 二级分类模板 -->
     <script type="text/template" id="childTpl">
         <span class="title">{{text}}</span>
@@ -94,7 +94,7 @@
             </li>
             {{/each}}
         </ul>
-</script>
+    </script>
     <script src="res/mui/js/mui.min.js"></script>
     <script src="/js/jquery.min.js"></script>
     <script src="/js/template-web.js"></script>
@@ -104,7 +104,7 @@
             url: '/api/category/queryTopCategory',
             type: 'get',
             success: function (info) {
-                console.log(info);
+                // console.log(info);
                 var html = template('tpl', info);
                 $('.cate_slide').html(html);
 
