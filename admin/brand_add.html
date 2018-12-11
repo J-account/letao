@@ -102,7 +102,7 @@
                     <li class="active">添加品牌</li>
                 </ol>
                 <div class="category-add">
-                    <form action="" class="form-horizontal">
+                    <form action="" class="form-horizontal" enctype="multipart/form-data">
                         <div class="form-group">
                             <label for="" class="col-xs-4 control-label">品牌 logo</label>
                             <div class="col-xs-1 preview">
@@ -157,5 +157,17 @@
     <script src="./assets/bootstrap/js/bootstrap.min.js"></script>
     <script src="./assets/nprogress/nprogress.js"></script>
     <script src="./js/common.js"></script>
+    <script>
+        $('.preview').on('click', function () {
+            
+            $.ajax({
+                url: '/api/category/addSecondCategoryPic',
+                type: 'post',
+                success: function (info) {
+                    console.log(info);
+                }
+            })
+        })
+    </script>
 </body>
 </html>
