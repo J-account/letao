@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <title>乐淘 - 后台管理</title>
@@ -8,8 +9,9 @@
     <link rel="stylesheet" href="./assets/nprogress/nprogress.css">
     <link rel="stylesheet" href="./css/index.css">
 </head>
+
 <body>
-    
+
     <!-- 侧边栏 -->
     <div class="aside">
         <!-- 个人资料 -->
@@ -44,7 +46,7 @@
                     <ul class="list-unstyled">
                         <li>
                             <a href="./category.html">
-                                 一级分类
+                                一级分类
                             </a>
                         </li>
                         <li>
@@ -93,7 +95,7 @@
                             </a>
                         </li>
                     </ul>
-                </nav>          
+                </nav>
             </div>
             <!-- 讲师资料 -->
             <div class="body">
@@ -105,53 +107,71 @@
                                 <img src="./images/default.png">
                                 <input type="file" id="upfile">
                                 <div class="cover">
-                                    <i class="fa fa-upload"></i>                  
+                                    <i class="fa fa-upload"></i>
                                 </div>
                             </div>
                         </div>
                         <div class="form-group">
                             <label for="" class="col-xs-3 control-label">商品名称</label>
                             <div class="col-xs-5">
-                                <input type="text" class="form-control input-sm">
+                                <input type="text" name="proName" class="form-control input-sm">
                             </div>
                         </div>
                         <div class="form-group">
                             <label for="" class="col-xs-3 control-label">所属品牌</label>
                             <div class="col-xs-5">
-                                <select name="" class="form-control input-sm">
+                                <select name="brandId" class="form-control input-sm">
                                     <option value="">河北省</option>
                                     <option value="">山东省</option>
                                     <option value="">北京市</option>
                                 </select>
                             </div>
                         </div>
+                       
                         <div class="form-group">
                             <label for="" class="col-xs-3 control-label">商品价格</label>
                             <div class="col-xs-5">
-                                <input type="text" class="form-control input-sm">
+                                <input type="text" name="oldPrice" class="form-control input-sm">
                             </div>
                         </div>
                         <div class="form-group">
                             <label for="" class="col-xs-3 control-label">优惠价格</label>
                             <div class="col-xs-5">
-                                <input type="text" class="form-control input-sm">
+                                <input type="text" name="price" class="form-control input-sm">
                             </div>
                         </div>
                         <div class="form-group">
                             <label for="" class="col-xs-3 control-label">库存量</label>
                             <div class="col-xs-5">
-                                <input type="text" class="form-control input-sm">
+                                <input type="text" name="num" class="form-control input-sm">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="" class="col-xs-3 control-label">尺寸</label>
+                            <div class="col-xs-5">
+                                <input type="number" name="size" class="form-control input-sm">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="inputEmail3" class="col-xs-3 control-label">上下架</label>
+                            <div class="col-xs-5">
+                                <div class="radio-inline">
+                                    <input type="radio" name="statu"> 上架
+                                </div>
+                                <div class="radio-inline">
+                                    <input type="radio" name="statu"> 下架
+                                </div>
                             </div>
                         </div>
                         <div class="form-group">
                             <label for="" class="col-xs-3 control-label">商品描述</label>
                             <div class="col-xs-5 ckeditor">
-                                <textarea name="" rows="5" class="form-control input-sm"></textarea>
+                                <textarea name="proDesc" rows="5" class="form-control input-sm"></textarea>
                             </div>
                         </div>
                         <div class="form-group">
                             <div class="col-xs-8">
-                                <a href="javascript:;" class="btn btn-success btn-sm pull-right">保 存</a>
+                                <input type="submit" class="btn btn-success btn-sm pull-right" value="保 存">
                             </div>
                         </div>
                     </form>
@@ -164,5 +184,31 @@
     <script src="./assets/bootstrap/js/bootstrap.min.js"></script>
     <script src="./assets/nprogress/nprogress.js"></script>
     <script src="./js/common.js"></script>
+    <script>
+        // 图片上传
+        // $('.upfile').on('click', function () {
+        //     $.ajax({
+        //         url: '/api/product/addProductPic',
+        //         type: 'post',
+        //         success: function (info) {
+        //             console.log(info);
+        //         }
+        //     })
+        // })
+        // 商品添加
+        $('form').on('submit', function () {
+            var data = $(this).serialize();
+            $.ajax({
+                url: '/api/product/addProduct',
+                data: data,
+                type: 'post',
+                success: function (info) {
+                    console.log(info);
+                }
+            });
+            return false;
+        })
+    </script>
 </body>
+
 </html>
